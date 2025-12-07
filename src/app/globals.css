@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
     --background: 200 20% 98%;
@@ -83,6 +79,12 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary-accent {
+    background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
   }
 }

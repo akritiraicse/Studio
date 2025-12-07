@@ -18,14 +18,15 @@ export default function ProfilePage() {
     <div className="flex flex-col h-full">
       <PageHeader title="My Profile" />
       <main className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex flex-col md:flex-row items-start gap-6">
-              <Avatar className="w-24 h-24 border-4 border-background shadow-md">
+        <Card className="overflow-hidden">
+          <div className="h-32 bg-gradient-to-r from-primary/50 to-accent/50" />
+          <CardContent className="p-6 pt-0">
+            <div className="flex flex-col md:flex-row items-start gap-6 -mt-16">
+              <Avatar className="w-28 h-28 border-4 border-background shadow-lg">
                 <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} />
-                <AvatarFallback className="text-3xl">{currentUser.name.charAt(0)}</AvatarFallback>
+                <AvatarFallback className="text-4xl">{currentUser.name.charAt(0)}</AvatarFallback>
               </Avatar>
-              <div className="flex-1">
+              <div className="flex-1 pt-16">
                 <div className="flex items-center justify-between">
                   <h2 className="text-3xl font-bold">{currentUser.name}</h2>
                   <Button variant="outline" size="sm"><Edit className="w-4 h-4 mr-2" />Edit Profile</Button>
@@ -92,12 +93,12 @@ export default function ProfilePage() {
               </CardHeader>
               <CardContent className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {achievements.map(ach => (
-                  <div key={ach.id} className="flex flex-col items-center text-center p-4 bg-accent/30 rounded-lg">
-                    <div className="p-3 bg-accent rounded-full mb-2">
-                       <ach.icon className="w-8 h-8 text-accent-foreground" />
+                  <div key={ach.id} className="flex flex-col items-center text-center p-4 bg-card hover:bg-accent/30 rounded-lg border transition-all hover:scale-105">
+                     <div className="p-4 bg-gradient-primary-accent text-primary-foreground rounded-full mb-3">
+                       <ach.icon className="w-8 h-8" />
                     </div>
                     <h4 className="font-semibold">{ach.name}</h4>
-                    <p className="text-xs text-muted-foreground">{ach.description}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{ach.description}</p>
                   </div>
                 ))}
               </CardContent>
@@ -126,7 +127,7 @@ export default function ProfilePage() {
                         </div>
                         <div className="flex items-center gap-0.5 mt-1">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`} />
+                            <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground/50'}`} />
                           ))}
                         </div>
                         <p className="mt-2 text-sm text-foreground/90">{review.comment}</p>

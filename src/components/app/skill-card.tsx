@@ -17,7 +17,7 @@ export function SkillCard({ skill, user }: SkillCardProps) {
   const CategoryIcon = category?.icon;
 
   return (
-    <Card className="flex flex-col overflow-hidden transition-all hover:shadow-lg">
+    <Card className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
       <CardHeader className="p-0">
         <div className="relative h-48 w-full">
           <Image
@@ -27,21 +27,22 @@ export function SkillCard({ skill, user }: SkillCardProps) {
             className="object-cover"
             data-ai-hint={skill.imageHint}
           />
+           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+           <div className="absolute bottom-4 left-4">
+              {category && CategoryIcon && (
+                  <Badge variant="secondary" className="mb-2">
+                      <CategoryIcon className="h-3 w-3 mr-1.5" />
+                      {category.name}
+                  </Badge>
+              )}
+           </div>
         </div>
       </CardHeader>
       <CardContent className="p-4 flex-1">
-        <div className="flex items-start justify-between">
-            {category && CategoryIcon && (
-                <Badge variant="outline" className="mb-2">
-                    <CategoryIcon className="h-3 w-3 mr-1" />
-                    {category.name}
-                </Badge>
-            )}
-            <div className="flex items-center gap-1 text-sm text-amber-500">
-                <Star className="w-4 h-4 fill-current" />
-                <span>{skill.rating.toFixed(1)}</span>
-                <span className="text-muted-foreground">({skill.reviewCount})</span>
-            </div>
+        <div className="flex items-center gap-1 text-sm text-amber-400 mb-2">
+            <Star className="w-4 h-4 fill-current" />
+            <span>{skill.rating.toFixed(1)}</span>
+            <span className="text-muted-foreground">({skill.reviewCount} reviews)</span>
         </div>
         <h3 className="text-lg font-semibold leading-tight mb-2 truncate">{skill.title}</h3>
         <p className="text-sm text-muted-foreground line-clamp-2">{skill.description}</p>
